@@ -1,0 +1,49 @@
+package laboratorio;
+import robocode.*;
+
+// API help : http://robocode.sourceforge.net/docs/robocode/robocode/JuniorRobot.html
+
+
+public class LaboRobot extends JuniorRobot
+{
+
+	private Strategy estrategia = new StrategyA(this);
+	
+	@Override	
+	public void run() {
+
+		setColors(orange, blue, white, yellow, black);
+		ahead(100);
+		turnGunRight(360);
+		back(100);
+		turnGunRight(360);
+		
+	}
+
+	/**
+	 * onScannedRobot: What to do when you see another robot
+	 */
+	@Override
+	public void onScannedRobot() {
+		//fire(1);
+		this.estrategia.onScannedRobot();
+	}
+
+	/**
+	 * onHitByBullet: What to do when you're hit by a bullet
+	 */
+	@Override
+	public void onHitByBullet() {
+		//back(10);
+		this.estrategia.onHitByBullet();
+	}
+	
+	/**
+	 * onHitWall: What to do when you hit a wall
+	 */
+	@Override
+	public void onHitWall() {
+		//back(20);
+		this.estrategia.onHitWall();
+	}	
+}
